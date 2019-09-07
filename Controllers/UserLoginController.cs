@@ -33,6 +33,7 @@ namespace BookLibrary.Controllers
                         FormsAuthentication.SetAuthCookie(user.Email, false);
                         //TempData["CurrentUser"] = real_user;
                         //return RedirectToAction("ProfilePage", "User");
+                        Session["UserProfile"] = real_user;
                         return View("ProfilePage", real_user);
                     }
                     else
@@ -71,6 +72,7 @@ namespace BookLibrary.Controllers
                         _db.SaveChanges();
                         FormsAuthentication.SetAuthCookie(user.Email, false);
                         //TempData["CurrentUser"] = real_user;
+                        Session["UserProfile"] = newUser;
                         return View("ProfilePage", newUser);
                     }
                     else
@@ -87,6 +89,18 @@ namespace BookLibrary.Controllers
                 throw e;
             }
 
+        }
+
+        public ActionResult LogOut()
+        {
+            try
+            {
+                return View("Login");
+
+            }catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public ActionResult ProfilePage(User user)

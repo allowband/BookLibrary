@@ -1,4 +1,5 @@
 ﻿using BookLibrary.DataAccessLayer;
+using BookLibrary.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace BookLibrary.Controllers
         // GET: Public
         public ActionResult HomePage()
         {
-            return View();
+            //BookListViewModel vm = new BookListViewModel(_db.Books.ToList());
+            return View(_db.Books.ToList());
         }
     }
 }

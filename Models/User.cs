@@ -37,5 +37,16 @@ namespace BookLibrary.Models
             Books = new List<Book>();
         }
 
+        public User(User user)
+        {
+            this.Id = user.Id;
+            this.Name = user.Name;
+            this.Password = user.Password;
+            this.State = user.State;
+            this.Email = user.Email;
+            this.Books = new List<Book>();
+            this.Books = user.Books;
+        }
+
     }
 }
