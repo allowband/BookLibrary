@@ -66,11 +66,12 @@ namespace BookLibrary.Controllers
                     {
                         //user does not excists
                         //you can regirster
-                        _db.Users.Add(new Models.User(user));
+                        var newUser = new Models.User(user);
+                        _db.Users.Add(newUser);
                         _db.SaveChanges();
                         FormsAuthentication.SetAuthCookie(user.Email, false);
                         //TempData["CurrentUser"] = real_user;
-                        return View("ProfilePage", real_user);
+                        return View("ProfilePage", newUser);
                     }
                     else
                     {
