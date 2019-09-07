@@ -30,8 +30,8 @@ namespace BookLibrary.Controllers
                 if (ModelState.IsValid)
                 {
                     var currentUser = Session["UserProfile"] as User;
-                    book.User = new User(currentUser);
-                    book.UserId = book.User.Id;
+                    //book.User = new User(currentUser);
+                    book.UserId = currentUser.Id;
                     _db.Books.Add(new Models.Book(book));
                     _db.SaveChanges();
                     return RedirectToAction("HomePage", "Public");

@@ -39,7 +39,6 @@ namespace BookLibrary.Models
             this.Genre = book.Genre;
             this.Artist = book.Artist;
             this.UserId = book.UserId;
-            this.User = book.User;
         }
     }
 }

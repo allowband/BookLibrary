@@ -67,8 +67,8 @@ namespace BookLibrary.Controllers
                     {
                         //user does not excists
                         //you can regirster
-                        var newUser = new Models.User(user);
-                        _db.Users.Add(newUser);
+                        //var newUser = new Models.User(user);
+                        var newUser = _db.Users.Add(new Models.User(user));
                         _db.SaveChanges();
                         FormsAuthentication.SetAuthCookie(user.Email, false);
                         //TempData["CurrentUser"] = real_user;
@@ -108,11 +108,24 @@ namespace BookLibrary.Controllers
         {
             if (user.Email != null)
             {
+                var books = _db.Books.Where(bk => bk.UserId == user.Id).ToList();
+                if (books != null)
+                {
+                    ViewData["Books"] = books;
+                }
                 return View(user);
+
+
             }
             else
             {
                 var currentUser = Session["UserProfile"] as User;
+                var books = _db.Books.Where(bk => bk.UserId == currentUser.Id).ToList();
+                if (books != null)
+                {
+                    ViewData["Books"] = books;
+                }
+                
                 return View(currentUser);
             }
             
