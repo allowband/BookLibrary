@@ -95,6 +95,7 @@ namespace BookLibrary.Controllers
         {
             try
             {
+                Session.Clear();
                 return View("Login");
 
             }catch(Exception e)
@@ -105,7 +106,16 @@ namespace BookLibrary.Controllers
 
         public ActionResult ProfilePage(User user)
         {
-            return View(user);
+            if (user.Email != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                var currentUser = Session["UserProfile"] as User;
+                return View(currentUser);
+            }
+            
         }
     }
 }

@@ -26,8 +26,13 @@
                             string userName = user.Name;
 
                             <li>@Html.ActionLink("LogOut", "LogOut", "UserLogin")</li>
+                            <li>@Html.ActionLink("Profile", "ProfilePage", "UserLogin")</li>
                             <li style="color:whitesmoke">Welcome user : @userName !</li>
                         }
+                        else {
+                            <li>@Html.ActionLink("Login","Login","UserLogin")</li>
+                        }
+
 
                     }
 
