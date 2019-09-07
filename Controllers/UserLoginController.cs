@@ -130,5 +130,19 @@ namespace BookLibrary.Controllers
             }
             
         }
+
+        public ActionResult DeleteBook(int book_id)
+        {
+            var bookToDelete = _db.Books.FirstOrDefault(bk => bk.Id == book_id);
+            var currentUser = Session["UserProfile"] as User;
+            if (bookToDelete != null)
+            {
+                _db.Books.Remove(bookToDelete);
+                _db.SaveChanges();
+                
+                return View("ProfilePage",currentUser);
+            }
+            return View("ProfilePage", currentUser);
+        }
     }
 }
