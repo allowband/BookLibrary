@@ -91,7 +91,6 @@ namespace BookLibrary.Controllers
 
         }
 
-        [HttpPost]
         public ActionResult LogOut()
         {
             try

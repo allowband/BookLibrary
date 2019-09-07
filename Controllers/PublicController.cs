@@ -17,5 +17,11 @@ namespace BookLibrary.Controllers
             //BookListViewModel vm = new BookListViewModel(_db.Books.ToList());
             return View(_db.Books.ToList());
         }
+
+        public ActionResult MakeAnOffer(int book_id)
+        {
+            Session["book_id"] = book_id;
+            return RedirectToAction("MakeAnOffer", "User");
+        }
     }
 }

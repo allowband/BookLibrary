@@ -41,7 +41,7 @@
         if (currentUser != null && currentUser.Id != item.UserId)
         {
             <td>
-                @Html.ActionLink("Make Offer", "Edit", new { id = item.Id })
+                @Html.ActionLink("Make Offer", "MakeAnOffer",  new { book_id = item.Id }, null)
             </td>
         }
     }

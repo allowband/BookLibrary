@@ -10,11 +10,34 @@
     <h4>OfferViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookIWant.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookIWant.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookIWant.Artist)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookIWant.Artist)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookIWant.Genre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookIWant.Genre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookIWant.ReleaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookIWant.ReleaseDate)
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+<p
+ 
 </p>
 <table class="table">
     <tr>
@@ -28,7 +51,7 @@
             ReleaseDate
         </th>
         <th>
-            BookIWant.Genre
+            Genre
         </th>
     </tr>
 
@@ -48,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
             <td>
-                @Html.ActionLink("Replace", "Edit", new { id = item.Id })
+                @Html.ActionLink("Replace", "ReplaceBook", new { bookiwant_id = Model.BookIWant.Id ,bookimgiving_id = item.Id })
             </td>
         </tr>
     }
