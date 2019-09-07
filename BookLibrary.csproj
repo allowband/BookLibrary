@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccessLayer\BookLibraryDBContext.cs" />
@@ -183,10 +184,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserLogin\Login.cshtml" />
     <Content Include="Views\UserLogin\Register.cshtml" />
+    <Content Include="Views\UserLogin\ProfilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Example\" />
+    <Folder Include="Views\Public\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

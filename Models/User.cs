@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookLibrary.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,7 +24,17 @@ namespace BookLibrary.Models
         public virtual ICollection<Book> Books { get; set; }
         public User()
         {
-            Books = new HashSet<Book>();
+            //Books = new HashSet<Book>();
+            Books = new List<Book>();
+        }
+
+        public User(RegisterViewModel newUser)
+        {
+            this.Email = newUser.Email;
+            this.Name = newUser.Name;
+            this.Password = newUser.Password;
+            this.State = newUser.State;
+            Books = new List<Book>();
         }
 
     }

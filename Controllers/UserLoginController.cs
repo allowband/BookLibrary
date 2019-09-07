@@ -1,14 +1,17 @@
 ﻿using BookLibrary.DataAccessLayer;
+using BookLibrary.Models;
 using BookLibrary.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BookLibrary.Controllers
 {
     //[Route("/")]
+    [AllowAnonymous]
     public class UserLoginController : Controller
     {
         private BookLibraryDBContext _db = new BookLibraryDBContext();
@@ -27,7 +30,10 @@ namespace BookLibrary.Controllers
                     var real_user = _db.Users.FirstOrDefault(usr => usr.Email == user.Email && usr.Password == user.Password);
                     if(real_user != null)
                     {
-                        return RedirectToAction("ProfilePage", "User");
+                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        //TempData["CurrentUser"] = real_user;
+                        //return RedirectToAction("ProfilePage", "User");
+                        return View("ProfilePage", real_user);
                     }
                     else
                     {
@@ -55,13 +61,20 @@ namespace BookLibrary.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var real_user = _db.Users.FirstOrDefault(usr => usr.Email == user.Email && usr.Password == user.Password);
-                    if (real_user != null)
+                    var real_user = _db.Users.FirstOrDefault(usr => usr.Email == user.Email);
+                    if (real_user == null)
                     {
-                        return RedirectToAction("ProfilePage", "User");
+                        //user does not excists
+                        //you can regirster
+                        _db.Users.Add(new Models.User(user));
+                        _db.SaveChanges();
+                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        //TempData["CurrentUser"] = real_user;
+                        return View("ProfilePage", real_user);
                     }
                     else
                     {
+                        //user with email excists
                         return View();
                     }
                 }
@@ -73,6 +86,11 @@ namespace BookLibrary.Controllers
                 throw e;
             }
 
+        }
+
+        public ActionResult ProfilePage(User user)
+        {
+            return View(user);
         }
     }
 }
