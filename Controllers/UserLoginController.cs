@@ -34,7 +34,7 @@ namespace BookLibrary.Controllers
                         //TempData["CurrentUser"] = real_user;
                         //return RedirectToAction("ProfilePage", "User");
                         Session["UserProfile"] = real_user;
-                        return View("ProfilePage", real_user);
+                        return RedirectToAction("HomePage", "Public");
                     }
                     else
                     {
@@ -70,7 +70,7 @@ namespace BookLibrary.Controllers
                         //var newUser = new Models.User(user);
                         var newUser = _db.Users.Add(new Models.User(user));
                         _db.SaveChanges();
-                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        //FormsAuthentication.SetAuthCookie(user.Email, false);
                         //TempData["CurrentUser"] = real_user;
                         Session["UserProfile"] = newUser;
                         return View("ProfilePage", newUser);
@@ -91,6 +91,7 @@ namespace BookLibrary.Controllers
 
         }
 
+        [HttpPost]
         public ActionResult LogOut()
         {
             try

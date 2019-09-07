@@ -1,4 +1,6 @@
-﻿using BookLibrary.Models;
+﻿using BookLibrary.DataAccessLayer;
+using BookLibrary.Models;
+using BookLibrary.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,23 @@ namespace BookLibrary.Controllers
     
     public class UserController : Controller
     {
+        BookLibraryDBContext _db = new BookLibraryDBContext();
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult MakeAnOffer()
+        public ActionResult MakeAnOffer(Book bookToTake)
         {
-            return View();
+            if(bookToTake != null)
+            {
+                var vm = new OfferViewModel(bookToTake);
+                var currentUser = Session["UserProfile"] as User;
+                vm.MyBooks = _db.Books.Where(bk => bk.UserId == currentUser.Id).ToList();
+                return View(vm);
+            }
+
+            return RedirectToAction("HomePage","LoginUser");
         }
 
         

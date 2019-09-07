@@ -1,0 +1,56 @@
+﻿@model BookLibrary.Models.ViewModel.OfferViewModel
+
+@{
+    ViewBag.Title = "MakeAnOffer";
+}
+
+<h2>MakeAnOffer</h2>
+
+<div>
+    <h4>OfferViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Artist
+        </th>
+        <th>
+            ReleaseDate
+        </th>
+        <th>
+            BookIWant.Genre
+        </th>
+    </tr>
+
+    @foreach (var item in Model.MyBooks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.ActionLink("Replace", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

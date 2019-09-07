@@ -36,9 +36,16 @@
     <td>
         @Html.DisplayFor(modelItem => item.Genre)
     </td>
-    <td>
-        @Html.ActionLink("Make Offer", "Edit", new { id = item.Id })
-    </td>
+    @{
+        var currentUser = Session["UserProfile"] as BookLibrary.Models.User;
+        if (currentUser != null && currentUser.Id != item.UserId)
+        {
+            <td>
+                @Html.ActionLink("Make Offer", "Edit", new { id = item.Id })
+            </td>
+        }
+    }
+
 </tr>
 }
 
